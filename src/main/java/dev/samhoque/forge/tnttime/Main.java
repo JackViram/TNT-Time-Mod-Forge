@@ -69,12 +69,13 @@ public class Main  {
     }
 
     public void doRender(RenderTNTPrimed tntRenderer, EntityTNTPrimed tntPrimed, double x, double y, double z, float partialTicks) {
-        int fuseTimer = this.playingBedwars ? tntPrimed.fuse - 28 : tntPrimed.fuse;
-        double distance = tntPrimed.getDistanceSqToEntity(tntRenderer.getRenderManager().livingPlayer);
-        if (fuseTimer < 1 || distance > 4096) return;
+    int fuseTimer = this.playingBedwars ? tntPrimed.fuse - 28 : tntPrimed.fuse;
+    double distance = tntPrimed.getDistanceSqToEntity(tntRenderer.getRenderManager().livingPlayer);
 
-        String time = this.timeFormatter.format((fuseTimer - partialTicks) / 20);
+    if (fuseTimer < 1 || distance > 4096) return;
 
+        int countdown = Math.max(0, fuseTimer - 20 * 2); - fuseTimer);  // Contador regressivo de 2 segundos
+        String time = this.timeFormatter.format(countdown / 20.0);
 
         GL11.glPushMatrix();
         GL11.glTranslatef((float) (x + 0.0), (float) (y + tntPrimed.height + 0.5), (float) z);
