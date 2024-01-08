@@ -73,7 +73,7 @@ public class Main  {
         double distance = tntPrimed.getDistanceSqToEntity(tntRenderer.getRenderManager().livingPlayer);
         if (fuseTimer < 1 || distance > 4096) return;
 
-        String time = this.timeFormatter.format((fuseTimer - partialTicks) / 20);
+        String time = this.timeFormatter.format((fuseTimer - partialTicks) / 20.0);
 
 
         GL11.glPushMatrix();
